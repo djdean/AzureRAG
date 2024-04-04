@@ -15,5 +15,5 @@ Sample config:
     "aoai_api_version": "<AOAI_API_VERSION>(e.g., 2024-03-01-preview)",<br/>
     "aoai_deployment_name": "<EMBEDDING_DEPLOYMENT_NAME>",<br/>
     "vector_Storage_mode":"ALL", //Allowed values are "ALL", "COSMOS", or "COGSEARCH"<br/>
-    "LLM" : "AOAI"<br/>//Allowed values are "AOAI
+    "LLM" : "AOAI"//Allowed values are "AOAI"<br/>
 }
