@@ -2,7 +2,7 @@
 
 <br/><br/>
 Sample config:
-{><br/>
+{<br/>
     "cosmos_username": "<USERNAME>",<br/>
     "cosmos_password": "<PASSWORD>",<br/>
     "cosmos_server": "<SERVER> (e.g.,myserver.mongocluster.cosmos.azure.com/"),<br/>
