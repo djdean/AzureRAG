@@ -1,4 +1,4 @@
-Azure RAG Samples repo WIP
+<h1>Azure RAG Samples repo WIP</h1>
 
 "vector_Storage_mode":"ALL", //Allowed values are "ALL", "COSMOS", or "COGSEARCH"<br/>
 "LLM" : "AOAI"//Allowed values are "AOAI
