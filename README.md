@@ -3,7 +3,7 @@
 <br/><br/>
 Sample config:
 {<br/>
-    "cosmos_username": "<USERNAME>",<br/>
+    "cosmos_username": "<Username>",<br/>
     "cosmos_password": "<PASSWORD>",<br/>
     "cosmos_server": "<SERVER> (e.g.,myserver.mongocluster.cosmos.azure.com/"),<br/>
     "cosmos_db_name": "<DB_NAME>",<br/>
