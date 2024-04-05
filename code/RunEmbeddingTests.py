@@ -8,10 +8,6 @@ def main():
     config = Config(config_data_path)
     DO_INIT = True
     INSERT_DATA = True
-    db_name = config.config_data["cosmos_db_name"]
-    collection_name = config.config_data["cosmos_db_collection_name"]
-    vector_dimension = config.config_data["vector_dimension"]
-    model = config.config_data["cosmos_username"]
     vector_db_handler = init_vector_db(config)
     llm_handler = init_LLM(config)
     storage_settings = {
@@ -31,7 +27,7 @@ def main():
         content_to_store = {
             "content": data,
             "contentVector": vector,
-            "model": model,
+            "model": config.config_data["aoai_deployment_name"],
             "company": "Microsoft"
         }
         vector_db_handler.store_vector_data(content_to_store, storage_settings)
