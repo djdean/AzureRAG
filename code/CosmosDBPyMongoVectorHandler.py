@@ -19,22 +19,20 @@ class CosmosDBPyMongoVectorHandler(VectorDBHandler):
         #TODO: Add error handling
         return True
     def reset_db(self, config_data):
-        db_name = config_data["cosmos_db_name"]
-        collection_name = config_data["cosmos_db_collection_name"]
         self.connect_to_vector_store(config_data)
         self.collection.drop_indexes()
         self.mongo_client.drop_database("DemoDB")
         #TODO: Add error handling
         return True
-    def store_vector_data(self, data, settings):
-        batch = settings["batch"]
+    def store_vector_data(self, data, app_config):
+        batch = app_config["batch"]
         if batch:
             self.collection.insert_many(data)
         else:
             self.collection.insert_one(data)
 
-    def do_vector_search(self, input_vector, settings):
-        num_results = settings["num_results"]
+    def do_vector_search(self, input_vector, app_config):
+        num_results = app_config["num_results_RAG"]
         pipeline = [
             {
                 '$search': {
