@@ -2,7 +2,7 @@ import abc
 
 class VectorDBHandler(abc.ABC):
     @abc.abstractmethod
-    def store_vector_data(self, data, settings):
+    def store_vector_data(self, data):
         pass
     @abc.abstractmethod
     def do_vector_search(self, input_vector, settings):

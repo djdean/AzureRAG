@@ -24,9 +24,8 @@ class CosmosDBPyMongoVectorHandler(VectorDBHandler):
         self.mongo_client.drop_database("DemoDB")
         #TODO: Add error handling
         return True
-    def store_vector_data(self, data, app_config):
-        batch = app_config["batch"]
-        if batch:
+    def store_vector_data(self, data):
+        if type(data) is list:
             self.collection.insert_many(data)
         else:
             self.collection.insert_one(data)
