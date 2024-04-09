@@ -14,4 +14,11 @@ class Utils:
         encoding = tiktoken.encoding_for_model(encoding_name)
         num_tokens = len(encoding.encode(string))
         return num_tokens
+    @staticmethod
+    def parse_schema_string_value(element_data):
+        gentype = None
+        str_split = element_data.split("|")
+        if len(str_split) > 1:
+            gentype = str_split[1]
+        return gentype
 

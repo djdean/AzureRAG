@@ -2,7 +2,9 @@ from CosmosDBPyMongoVectorHandler import CosmosDBPyMongoVectorHandler
 from LLMHandler import LLMHandler
 from AOAIHandler import AOAIHandler
 from VectorDBHandler import VectorDBHandler
+from AzureSearchVectorHandler import AzureSearchVectorHandler
 from Config import Config
+from typing import Tuple
 class App:
     def __init__(self,app_config_path):
         self.app_config = Config(app_config_path)
@@ -22,21 +24,24 @@ class App:
         for result in results:
             current_result_content = result["content"]
             print("Result: "+current_result_content)
-    def init_vector_db(self,app_config): 
+    def init_vector_db(self,app_config) -> Tuple[VectorDBHandler,Config]: 
         vector_db_handler = None
         vector_db_config = None
-        if (app_config.config_data["vector_storage_mode"] == "ALL"):
-            cosmos_db_config_path = app_config.config_data["cosmos_db_config_path"]
-            vector_db_config = Config(cosmos_db_config_path)
+        vector_db_config_path = app_config.config_data["vector_db_config_path"]
+        if (app_config.config_data["vector_storage_mode"] == "COSMOS"):
+            vector_db_config = Config(vector_db_config_path)
             vector_db_handler =  self.init_cosmos_db(vector_db_config)
+        elif (app_config.config_data["vector_storage_mode"] == "COGSEARCH"):
+            vector_db_config = Config(vector_db_config_path)
+            vector_db_handler =  self.init_cogsearch(vector_db_config)
         return (vector_db_handler, vector_db_config)
 
-    def init_LLM(self,app_config)->LLMHandler:
+    def init_LLM(self,app_config)->Tuple[LLMHandler,Config]:
         llm_handler = None
         llm_config = None
+        llm_config_path = app_config.config_data["llm_config_path"]
         if (app_config.config_data["LLM"] == "AOAI"):
-            aoai_config_path = app_config.config_data["aoai_config_path"]
-            llm_config = Config(aoai_config_path)
+            llm_config = Config(llm_config_path)
             llm_handler = self.init_AOAI(llm_config)
         return (llm_handler, llm_config)
 
@@ -49,9 +54,9 @@ class App:
         aoai_handler = AOAIHandler(aoai_endpoint, aoai_key, aoai_api_version, aoai_temperature, aoai_model)
         return aoai_handler
     def init_cosmos_db(self,config):
-        cosmos_username = config.config_data["cosmos_username"]
-        cosmos_password = config.config_data["cosmos_password"]
-        cosmos_server = config.config_data["cosmos_server"]
-        cosmos_vector_handler = CosmosDBPyMongoVectorHandler(cosmos_username, cosmos_password, cosmos_server)
+        cosmos_vector_handler = CosmosDBPyMongoVectorHandler(config.config_data)
         return cosmos_vector_handler
+    def init_cogsearch(self,config):
+        ai_search_handler = AzureSearchVectorHandler(config.config_data)
+        return ai_search_handler
     

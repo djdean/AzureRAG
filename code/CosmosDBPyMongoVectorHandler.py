@@ -3,10 +3,10 @@ import urllib
 import pymongo
 class CosmosDBPyMongoVectorHandler(VectorDBHandler):
 
-    def __init__(self, username, password, server):
-        self.username = username
-        self.password = password
-        self.server = server
+    def __init__(self, config_data):
+        self.username = config_data['cosmos_username']
+        self.password = config_data['cosmos_password']
+        self.server = config_data['cosmos_server']
         self.mongo_conn = "mongodb+srv://"+urllib.parse.quote(self.username)+":"+urllib.parse.quote(self.password)+ \
         "@"+self.server+"?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000"
         self.mongo_client = pymongo.MongoClient(self.mongo_conn)

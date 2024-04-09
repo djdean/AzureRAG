@@ -14,6 +14,6 @@ Sample config:
     "vector_dimension": <VECTOR_SIZE>(e.g., 1536 for AOAI embeddings),<br/>
     "aoai_api_version": "<AOAI_API_VERSION>(e.g., 2024-03-01-preview)",<br/>
     "aoai_deployment_name": "<EMBEDDING_DEPLOYMENT_NAME>",<br/>
-    "vector_Storage_mode":"ALL", //Allowed values are "ALL", "COSMOS", or "COGSEARCH"<br/>
+    "vector_Storage_mode":"ALL", //Allowed values are "COSMOS", or "COGSEARCH"<br/>
     "LLM" : "AOAI"//Allowed values are "AOAI"<br/>
 }

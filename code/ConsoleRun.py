@@ -2,12 +2,12 @@ from App import App
 from RandomSampleDataGenerator import RandomSampleDataGenerator
 from Config import Config
 def main():
-    app_config_path = r"C:\Users\dade\Desktop\AzureRAG\config\app_config.json"
+    app_config_path = r"C:\Users\dade\Desktop\AzureRAG\config\ai_search_app_config.json"
     random_data_config_path = r"C:\Users\dade\Desktop\AzureRAG\config\random_data_config.json"
     random_data_config = Config(random_data_config_path)
     DO_INIT = True
     INSERT_DATA = True
-    RANDOMIZE_DATA = False
+    RANDOMIZE_DATA = True
     console_app = App(app_config_path)
     if DO_INIT:
         console_app.do_init()
